@@ -1,0 +1,23 @@
+name: Hiragana Chart
+id: com.nebuff.hiragana
+type: widget
+version: 1.0.0
+author: Nebuff
+description: A compact hiragana chart with the gojūon, dakuten and handakuten.
+license: MIT
+repository: https://github.com/nebuff/gri-hira
+min_grimoire_version: 2.1.0
+platforms: [all]
+artifact:
+  path: hiragana.bin
+  sha256: a6e50a69101acaa100e52f6b29d3b51f863bb49506e444c24df3eb4bdc7ad8b9
+  size: 39502
+capabilities: []
+spec:
+  runtime: wasm
+  entry: _start
+  icon: language
+  minimizable: true
+  size:
+    mode: fixed
+    default: [660, 820]
