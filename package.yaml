@@ -1,7 +1,7 @@
 name: Hiragana Chart
 id: com.nebuff.hiragana
 type: widget
-version: 1.0.0
+version: 1.0.1
 author: Nebuff
 description: A compact hiragana chart with the gojūon, dakuten and handakuten.
 license: MIT
@@ -20,4 +20,4 @@ spec:
   minimizable: true
   size:
     mode: fixed
-    default: [660, 820]
+    default: [720, 900]
