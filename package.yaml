@@ -10,8 +10,8 @@ min_grimoire_version: 2.1.0
 platforms: [all]
 artifact:
   path: hiragana.bin
-  sha256: a6e50a69101acaa100e52f6b29d3b51f863bb49506e444c24df3eb4bdc7ad8b9
-  size: 39502
+  sha256: fdf1d8a0df54a09804aa6affe2ec144665647fa445c45e406bbee6ae6d9f2db9
+  size: 39517
 capabilities:
   - editor:overlay
 spec:
