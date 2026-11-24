@@ -12,7 +12,8 @@ artifact:
   path: hiragana.bin
   sha256: a6e50a69101acaa100e52f6b29d3b51f863bb49506e444c24df3eb4bdc7ad8b9
   size: 39502
-capabilities: []
+capabilities:
+  - editor:overlay
 spec:
   runtime: wasm
   entry: _start
