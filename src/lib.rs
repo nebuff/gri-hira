@@ -72,20 +72,20 @@ fn draw_grid(rows: &[[Cell; 5]], x: i32, top: i32, cell_w: i32, cell_h: i32, gap
 
 fn draw(w: i32, h: i32, s: f32) {
     unsafe { status(STATUS.as_ptr() as i32, STATUS.len() as i32) };
-    if w < 120 || h < 120 {
+    if w < 160 || h < 160 {
         return;
     }
 
-    let pad = (14.0 * s) as i32;
-    let header_h = (48.0 * s) as i32;
-    let panel_title_h = (21.0 * s) as i32;
-    let col_head_h = (17.0 * s) as i32;
-    let footer_h = (18.0 * s) as i32;
-    let row_gap = (3.0 * s) as i32;
-    let col_gap = (4.0 * s) as i32;
-    let panel_gap = (14.0 * s) as i32;
+    let pad = (20.0 * s) as i32;
+    let header_h = (64.0 * s) as i32;
+    let panel_title_h = (28.0 * s) as i32;
+    let col_head_h = (22.0 * s) as i32;
+    let footer_h = (24.0 * s) as i32;
+    let row_gap = (5.0 * s) as i32;
+    let col_gap = (6.0 * s) as i32;
+    let panel_gap = (18.0 * s) as i32;
 
-    let content_top = pad + header_h + (10.0 * s) as i32;
+    let content_top = pad + header_h + (16.0 * s) as i32;
     let content_w = w - pad * 2;
     if content_w <= panel_gap + 20 {
         return;
@@ -98,7 +98,7 @@ fn draw(w: i32, h: i32, s: f32) {
     let grid_top = content_top + panel_title_h + col_head_h;
     let rows = BASIC.len() as i32;
     let grid_h = h - grid_top - pad - footer_h - row_gap * (rows - 1);
-    let cell_h = (grid_h / rows).max((24.0 * s) as i32);
+    let cell_h = (grid_h / rows).max((32.0 * s) as i32);
     let cell_w = (left_w - col_gap * 4) / 5;
     if cell_w <= 0 || cell_h <= 0 {
         return;
@@ -116,14 +116,14 @@ fn draw(w: i32, h: i32, s: f32) {
         true,
     );
 
-    txt(left_x, content_top, left_w, panel_title_h, "Basic · 46", (15.0 * s) as i32, false);
-    txt(right_x, content_top, right_w, panel_title_h, "Dakuten · Handakuten", (15.0 * s) as i32, false);
+    txt(left_x, content_top, left_w, panel_title_h, "Basic · 46", (18.0 * s) as i32, false);
+    txt(right_x, content_top, right_w, panel_title_h, "Dakuten · Handakuten", (18.0 * s) as i32, false);
 
     for (col, label) in COLUMNS.iter().enumerate() {
         let x = left_x + col as i32 * (cell_w + col_gap);
-        txt(x, grid_top - col_head_h, cell_w, col_head_h, label, (10.0 * s) as i32, true);
+        txt(x, grid_top - col_head_h, cell_w, col_head_h, label, (12.0 * s) as i32, true);
         let x = right_x + col as i32 * (cell_w + col_gap);
-        txt(x, grid_top - col_head_h, cell_w, col_head_h, label, (10.0 * s) as i32, true);
+        txt(x, grid_top - col_head_h, cell_w, col_head_h, label, (12.0 * s) as i32, true);
     }
 
     draw_grid(&BASIC, left_x, grid_top, cell_w, cell_h, row_gap, s);
@@ -133,8 +133,8 @@ fn draw(w: i32, h: i32, s: f32) {
     let voiced_top = grid_top;
     draw_grid(&VOICED[..dakuten_rows], right_x, voiced_top, cell_w, cell_h, row_gap, s);
 
-    let hand_title_y = voiced_top + dakuten_rows as i32 * (cell_h + row_gap) + (8.0 * s) as i32;
-    txt(right_x, hand_title_y, right_w, panel_title_h, "Handakuten", (14.0 * s) as i32, false);
+    let hand_title_y = voiced_top + dakuten_rows as i32 * (cell_h + row_gap) + (10.0 * s) as i32;
+    txt(right_x, hand_title_y, right_w, panel_title_h, "Handakuten", (16.0 * s) as i32, false);
     draw_grid(
         &VOICED[dakuten_rows..],
         right_x,
@@ -143,13 +143,7 @@ fn draw(w: i32, h: i32, s: f32) {
         cell_h,
         row_gap,
         s,
-    );
-
-    txt(
-        right_x,
-        hand_title_y + panel_title_h + cell_h + (18.0 * s) as i32,
-        right_w,
-        (18.0 * s) as i32,
+    );txt(right_x, hand_title_y + panel_title_h + cell_h + (20.0 * s) as i32, right_w, (20.0 * s) as i32,
         "゛ voices  ·  ゜ semi-voices",
         (11.0 * s) as i32,
         false,
@@ -168,7 +162,7 @@ fn draw(w: i32, h: i32, s: f32) {
 
 #[no_mangle]
 pub extern "C" fn widget_draw(w: i32, h: i32, scale_milli: i32) {
-    draw(w, h, scale_milli.max(500) as f32 / 1000.0);
+    draw(w, h, scale_milli.max(1000) as f32 / 1000.0);
 }
 
 #[no_mangle]
